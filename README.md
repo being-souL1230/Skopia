@@ -48,7 +48,6 @@ Skopia features multi-language manifest parsing, AST-like regex import mapping, 
 
 **Zero-execution static analysis for dependencies, docs, and repo hygiene: one score, zero surprises.**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#license)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black)](#tech-stack)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](#tech-stack)
 [![No Code Execution](https://img.shields.io/badge/Execution-Zero-brightgreen)](#how-its-safe)
