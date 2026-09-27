@@ -40,7 +40,135 @@ Every evaluation runs against a fixed catalog of explicit static analysis rules.
 
 ## Supported Programming Languages
 
-Skopia features multi-language manifest parsing, AST-like regex import mapping, and environment variable cross-referencing.
+Skopia features multi-language manifest parsing, AST-like regex import mapping, and environment variable cross-referen<div align="center">
+
+# 🔍 Skopia
+
+### Know your repo's health before you ship it.
+
+**Zero-execution static analysis for dependencies, docs, and repo hygiene: one score, zero surprises.**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#license)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black)](#tech-stack)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](#tech-stack)
+[![No Code Execution](https://img.shields.io/badge/Execution-Zero-brightgreen)](#how-its-safe)
+
+</div>
+
+---
+
+## Why Skopia?
+
+Every repo has skeletons: a stray `.env` someone forgot to gitignore, a dependency nobody uses anymore, a README that promises setup instructions and delivers none. Skopia finds them before your reviewer, your CI, or your future self does.
+
+Drop in a ZIP or a GitHub URL. Get a single health score out of 100, backed by a full list of concrete, fixable findings. No vague "looks okay" verdicts, no AI guesswork, just the same deterministic rules every time.
+
+**And it never runs your code.** No `npm install`, no `pip install`, no shell scripts, no builds. Your repo is read as text and nothing more, so scanning something untrusted is genuinely safe.
+
+---
+
+## What it checks
+
+| 🧩 Category | Weight | What it's really asking |
+|---|---|---|
+| **Dependencies** | 40% | Are you shipping packages you don't use? Importing ones you never declared? |
+| **Documentation** | 35% | Could a stranger clone this and actually run it? |
+| **Hygiene** | 25% | Any secrets committed? Dead code? Silent error swallowing? |
+
+Findings are weighted **Critical to Info**, so one leaked API key hurts your score a lot more than a missing screenshot.
+
+---
+
+## Speaks your language(s)
+
+Skopia isn't a JS-only tool wearing a "multi-language" label. It genuinely parses manifests and source across:
+
+**JavaScript/TypeScript · Python · Go · Rust · PHP · Java/Kotlin · Ruby**
+
+Mixed-stack repo? A Next.js frontend with a Go backend gets both analyzed and combined into one score. Polyglot projects are a first-class case, not an edge case.
+
+---
+
+## How it's safe
+
+Three guarantees, no exceptions:
+
+- **Nothing executes.** Not your build scripts, not your lifecycle hooks, not a single line of your code.
+- **Nothing touches disk.** ZIPs are unpacked entirely in memory (25MB cap), with directory-traversal protection baked in.
+- **Nothing is sent to an external AI.** Scoring is rule-based and deterministic, so scanning the same repo twice gives the same result twice.
+
+---
+
+## Get it running
+
+```bash
+git clone https://github.com/being-souL1230/Skopia.git
+cd Skopia
+npm install
+```
+
+Create a `.env` in the project root:
+
+```env
+DATABASE_URL="postgresql://user:pass@your-neon-host/neondb?sslmode=require"
+
+# Optional, only needed for GitHub login
+GITHUB_CLIENT_ID="your_github_client_id"
+GITHUB_CLIENT_SECRET="your_github_client_secret"
+```
+
+Push the schema and launch:
+
+```bash
+npx drizzle-kit push
+npm run dev
+```
+
+Open **[localhost:3000](http://localhost:3000)** and you're in.
+
+Before shipping to prod:
+
+```bash
+npm run typecheck
+npm run build
+npm run start
+```
+
+---
+
+## Under the hood
+
+| Layer | Choice |
+|---|---|
+| Framework | Next.js 16 (App Router, Server Actions) |
+| UI | React 19 + Tailwind CSS v4 |
+| Language | TypeScript 5, end to end |
+| Database | PostgreSQL on Neon, via Drizzle ORM |
+| Unzip engine | fflate (in-memory, no temp files) |
+| Auth | Custom sessions + GitHub OAuth |
+
+Four tables, kept simple: `users`, `sessions`, `projects`, `scans`. Every scan stores its full report as JSON, so history and re-review are free.
+
+---
+
+## The rulebook, if you're curious
+
+Skopia runs on ~35 explicit rules across four categories: project structure, dependency health, documentation completeness, and repo hygiene/security. A few examples of what trips them:
+
+- 🔴 **Critical**: a committed `.env`, an AWS key sitting in source code
+- 🟠 **High**: a README missing entirely, an import with no matching dependency
+- 🟡 **Medium**: no `.gitignore`, undocumented env vars, conflicting lockfiles
+- ⚪ **Low/Info**: console.log spam, oversized files, no CI pipeline configured
+
+Full rule table lives in `/docs/rules.md` (or ask the app, every finding links back to its rule ID).
+
+---
+
+## License
+
+MIT. Do what you want with it.
+
+</div>cing.
 
 | Language | Manifest Files | Source Extensions | Capabilities Analyzed |
 | :--- | :--- | :--- | :--- |
