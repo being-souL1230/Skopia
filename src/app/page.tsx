@@ -8,7 +8,7 @@ import { DEMO_JS, DEMO_JS_FIXED } from "@/lib/seed";
 export const dynamic = "force-dynamic";
 
 const checks = [
-  { title: "Dependency health", description: "Compare declared packages with recognizable imports. Find what may no longer belong — without jumping to conclusions.", evidence: "package.json · requirements.txt", kind: "circle" },
+  { title: "Dependency health", description: "Compare declared packages with recognizable imports. Find what may no longer belong, without jumping to conclusions.", evidence: "package.json · requirements.txt", kind: "circle" },
   { title: "README Doctor", description: "Check the essentials a new contributor needs: what it does, how to install it, how to run it, and what to configure.", evidence: "README.md · 9 completeness checks", kind: "triangle" },
   { title: "Environment setup", description: "Spot variables used in code but missing from the README or example config. Make the first local run less of a puzzle.", evidence: "process.env · os.getenv", kind: "circle" },
   { title: "Repository hygiene", description: "Catch missing licenses, absent ignore rules and common secret-file names. Small details, fewer surprises at handoff.", evidence: "LICENSE · .gitignore · .env", kind: "triangle" },
@@ -30,9 +30,8 @@ const questions = [
 
 function SectionLabel({ number, children }: { number: string; children: React.ReactNode }) {
   return (
-    <p className="mb-3 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-mute">
+    <p className="mb-3 flex items-center gap-2.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-mute">
       <span className="font-mono font-normal text-brass">{number}</span>
-      <span className="h-px w-5 bg-rule" aria-hidden="true" />
       {children}
     </p>
   );
@@ -68,7 +67,7 @@ export default async function Home() {
           <div>
             <p className="mb-5 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-mute sm:text-xs"><span className="tri text-brass" aria-hidden="true" /> Project Health Analyzer</p>
             <h1 id="hero-heading" className="text-[2.65rem] font-extrabold leading-[1.08] tracking-[-0.045em] sm:text-5xl lg:text-[3.5rem]">Know what your repository needs before you ship it.</h1>
-            <p className="mt-5 max-w-[440px] text-[15px] leading-relaxed text-mute">Dependency clutter. Missing setup steps. Undocumented variables. Find the loose ends — and know exactly what to fix next.</p>
+            <p className="mt-5 max-w-[440px] text-[15px] leading-relaxed text-mute">Dependency clutter. Missing setup steps. Undocumented variables. Find the loose ends and know exactly what to fix next.</p>
             <div className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-4">
               <Link href={analyzeHref} className="link-act text-sm">
                 <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-ink text-canvas"><span className="tri-r" aria-hidden="true" /></span>
@@ -191,7 +190,11 @@ export default async function Home() {
       </main>
 
       <footer className="flex flex-wrap items-center justify-between gap-x-6 gap-y-4 border-t border-rule py-6 text-[10px] text-mute">
-        <p><span className="font-bold tracking-[0.18em] text-ink">SKOPIA</span><span className="ml-3">Project Health Analyzer</span></p>
+        <div className="flex items-center gap-2">
+          <img src="/skopia.webp?v=4" alt="Skopia" className="h-5 w-5 rounded-full object-cover shadow-xs" />
+          <span className="font-bold tracking-[0.18em] text-ink">SKOPIA</span>
+          <span className="ml-2 text-mute">Project Health Analyzer</span>
+        </div>
         <div className="flex items-center gap-7">
           <span className="hidden tracking-[0.5em] text-brass sm:inline" aria-hidden="true">◯ △ ◯ △ ◯</span>
           <span>Rule-based · AI-free core</span>

@@ -6,9 +6,9 @@ const RULES: [string, string, string, string][] = [
   ["PROJ-001", "Project", "medium", "No supported project manifest detected."],
   ["PROJ-002", "Project", "info", "TypeScript project detected."],
   ["DEP-001", "Dependencies", "medium", "Declared dependency has no recognizable import/usage (low for devDependencies)."],
-  ["DEP-003", "Dependencies", "high", "Dependency manifest could not be parsed — analysis error, no guessing."],
+  ["DEP-003", "Dependencies", "high", "Dependency manifest could not be parsed: analysis error, no guessing."],
   ["DEP-004", "Dependencies", "info", "Usage only inside ignored/generated folders is not counted."],
-  ["DEP-005", "Dependencies", "low", "devDependency imported by runtime source — flagged for review."],
+  ["DEP-005", "Dependencies", "low", "devDependency imported by runtime source (flagged for review)."],
   ["DEP-006", "Dependencies", "high", "Undeclared dependency used in source code but missing from manifest."],
   ["DEP-007", "Dependencies", "medium", "Conflicting package manager lockfiles detected."],
   ["DOC-001", "README", "high", "README not found."],
@@ -70,7 +70,7 @@ export default function Docs() {
         ))}
       </ul>
       <h2 className="mt-12 text-xs uppercase tracking-[0.2em] text-mute">Security</h2>
-      <p className="mb-16 mt-3 border-t border-rule pt-4 text-sm text-mute">Archives are unpacked in memory with path-traversal guards, binaries are skipped, and nothing is executed — no npm scripts, setup.py, shell scripts, or lifecycle hooks. Only public github.com URLs are accepted.</p>
+      <p className="mb-16 mt-3 border-t border-rule pt-4 text-sm text-mute">Archives are unpacked in memory with path-traversal guards, binaries are skipped, and nothing is executed: no npm scripts, setup.py, shell scripts, or lifecycle hooks. Only public github.com URLs are accepted.</p>
     </div>
   );
 }

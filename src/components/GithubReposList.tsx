@@ -139,12 +139,17 @@ export default function GithubReposList({
 
       {/* Filter / Search Bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-rule pb-3">
-        <div className="flex flex-1 items-center gap-3 min-w-[200px] max-w-md">
+        <div className="relative flex flex-1 items-center min-w-[220px] max-w-md">
+          <span className="pointer-events-none absolute left-3 text-mute">
+            <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </span>
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search repository or language…"
-            className="field w-full font-mono text-xs"
+            className="w-full rounded-lg border border-rule bg-canvas/50 py-2 pl-9 pr-4 font-mono text-xs text-ink outline-none transition-all placeholder:text-mute focus:border-brass focus:ring-1 focus:ring-brass"
           />
         </div>
 

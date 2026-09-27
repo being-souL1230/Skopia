@@ -168,7 +168,7 @@ function DependencyView({ report }: { report: Report }) {
   const list = deps.filter((d) => d.name.toLowerCase().includes(q.toLowerCase()) && (st === "all" || d.status === st));
   const R = 44, C = 2 * Math.PI * R;
   const seg = (n: number) => (deps.length ? (n / deps.length) * C : 0);
-  if (!deps.length) return <p className="py-10 text-center text-sm text-mute">◯ No declared dependencies found{report.project.manifests.length ? "" : " — no supported manifest detected"}.</p>;
+  if (!deps.length) return <p className="py-10 text-center text-sm text-mute">◯ No declared dependencies found{report.project.manifests.length ? "" : " (no supported manifest detected)"}.</p>;
   return (
     <section className="grid gap-10 pt-6 md:grid-cols-[180px_1fr]">
       <div className="flex flex-col items-center">
@@ -186,7 +186,7 @@ function DependencyView({ report }: { report: Report }) {
       </div>
       <div>
         <div className="mb-2 flex flex-wrap items-center gap-5 text-xs">
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="filter packages…" className="field max-w-[180px] font-mono text-xs" aria-label="Filter packages" />
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="filter packages…" className="rounded-lg border border-rule bg-canvas/50 px-3 py-1 max-w-[190px] font-mono text-xs text-ink outline-none transition-all placeholder:text-mute focus:border-brass focus:ring-1 focus:ring-brass" aria-label="Filter packages" />
           {[["all", "all"], ["used", "used"], ["possibly_unused", "possibly unused"], ["unknown", "unknown"]].map(([k, l]) => (
             <button key={k} onClick={() => setSt(k)} className={st === k ? "font-bold underline decoration-brass underline-offset-4" : "text-mute hover:text-ink"}>{l}</button>
           ))}

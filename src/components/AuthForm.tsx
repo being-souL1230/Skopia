@@ -43,7 +43,7 @@ export default function AuthForm({ mode, oauthError }: { mode: "login" | "regist
             {mode === "login" ? "New here? Register" : "Have an account? Sign in"}
           </Link>
         </div>
-        {mode === "login" && <p className="border-t border-rule pt-4 text-xs text-mute">Demo account prefilled — <span className="font-mono">demo@skopia.dev / demo1234</span></p>}
+        {mode === "login" && <p className="border-t border-rule pt-4 text-xs text-mute">Demo account prefilled: <span className="font-mono">demo@skopia.dev / demo1234</span></p>}
       </form>
     </div>
   );

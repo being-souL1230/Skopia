@@ -2,11 +2,13 @@ import Link from "next/link";
 
 export default function Wordmark({ href = "/" }: { href?: string }) {
   return (
-    <Link href={href} className="inline-flex items-center gap-2 text-[15px] font-extrabold tracking-[0.28em]">
-      <span className="relative inline-flex h-5 w-5 items-center justify-center rounded-full border border-ink">
-        <span className="tri text-brass" style={{ transform: "scale(.7)" }} />
-      </span>
-      SKOPIA
+    <Link href={href} className="group inline-flex items-center gap-2.5 text-[15px] font-extrabold tracking-[0.28em]">
+      <img
+        src="/skopia.webp?v=4"
+        alt="Skopia logo"
+        className="h-7 w-7 rounded-full object-cover shadow-sm transition-transform duration-200 group-hover:scale-110"
+      />
+      <span>SKOPIA</span>
     </Link>
   );
 }

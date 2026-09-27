@@ -808,13 +808,13 @@ export function analyze(name: string, rawFiles: InputFile[]): Report {
     { id: "usage", label: "Usage", rule_id: "DOC-004", applicable: !!readme, pass: hasHeading(/usage|run|how to use|example|running/), expected: "A 'Usage' heading showing how to start or use the project, ideally with a code example." },
     { id: "configuration", label: "Configuration", rule_id: "DOC-005", applicable: !!readme && envNames.size > 0, pass: hasHeading(/config|environment|env|settings|variables/) || tablesCount > 0, expected: "A 'Configuration' / 'Environment variables' section or table." },
     { id: "api", label: "API", rule_id: "DOC-006", applicable: !!readme && apiIndicators, pass: hasHeading(/api|endpoint|routes|reference/), expected: "An 'API' section listing endpoints, methods and payloads." },
-    { id: "screenshots", label: "Screenshots", rule_id: "DOC-007", applicable: !!readme && isUi, pass: /!\[.*?\]\(.*?\)|<img\s/i.test(rd) || hasHeading(/screenshot|demo|preview/), expected: "At least one image or screenshot reference — relevant because UI files were detected." },
+    { id: "screenshots", label: "Screenshots", rule_id: "DOC-007", applicable: !!readme && isUi, pass: /!\[.*?\]\(.*?\)|<img\s/i.test(rd) || hasHeading(/screenshot|demo|preview/), expected: "At least one image or screenshot reference (relevant because UI files were detected)." },
     { id: "license", label: "License", rule_id: "DOC-008", applicable: true, pass: hasHeading(/licen[cs]e/) || hasLicenseFile, expected: "A 'License' heading in the README or a LICENSE file at the root." },
   ];
 
   const docMeta: Record<string, { sev: Severity; title: string; impact: string; fix: string }> = {
     "DOC-001": { sev: "high", title: "README not found", impact: "New contributors and reviewers have no entry point to the project.", fix: "Create README.md with description, installation and usage." },
-    "DOC-002": { sev: "medium", title: "Project description missing or too short", impact: "Visitors cannot quickly tell what the project does.", fix: "Add 1–3 sentences under the title describing purpose and audience." },
+    "DOC-002": { sev: "medium", title: "Project description missing or too short", impact: "Visitors cannot quickly tell what the project does.", fix: "Add 1 to 3 sentences under the title describing purpose and audience." },
     "DOC-009": { sev: "low", title: "Features section missing", impact: "Capabilities are not discoverable at a glance.", fix: "Add a '## Features' list." },
     "DOC-003": { sev: "medium", title: "Installation instructions missing", impact: "Contributors cannot set the project up reliably.", fix: "Add '## Installation' with exact commands." },
     "DOC-004": { sev: "medium", title: "Usage instructions missing", impact: "Users do not know how to run the project after installing.", fix: "Add '## Usage' with a run command and example." },

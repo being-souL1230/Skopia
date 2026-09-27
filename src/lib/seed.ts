@@ -32,14 +32,14 @@ export const DEMO_USER = { email: "demo@skopia.dev", password: "demo1234", name:
 
 export async function seedProjectsFor(userId: number) {
   const day = 86400000;
-  const [js] = await db.insert(projects).values({ userId, name: "demo-project", source: "zip", notes: "Hackathon demo repository — intentionally imperfect.", createdAt: new Date(Date.now() - 3 * day) }).returning();
+  const [js] = await db.insert(projects).values({ userId, name: "demo-project", source: "zip", notes: "Hackathon demo repository (intentionally imperfect).", createdAt: new Date(Date.now() - 3 * day) }).returning();
   const r1 = analyze("demo-project", DEMO_JS);
   const r2 = analyze("demo-project", DEMO_JS_FIXED);
   await db.insert(scans).values([
     { projectId: js.id, score: r1.score, report: r1, createdAt: new Date(Date.now() - 3 * day) },
     { projectId: js.id, score: r2.score, report: r2, createdAt: new Date(Date.now() - 2 * day) },
   ]);
-  const [py] = await db.insert(projects).values({ userId, name: "weather-bot", source: "zip", notes: "Side project — check before open-sourcing.", createdAt: new Date(Date.now() - day) }).returning();
+  const [py] = await db.insert(projects).values({ userId, name: "weather-bot", source: "zip", notes: "Side project (check before open-sourcing).", createdAt: new Date(Date.now() - day) }).returning();
   const r3 = analyze("weather-bot", DEMO_PY);
   await db.insert(scans).values({ projectId: py.id, score: r3.score, report: r3, createdAt: new Date(Date.now() - day) });
 }
